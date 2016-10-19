@@ -1,0 +1,24 @@
+language: android
+jdk: oraclejdk8
+env:
+  matrix:
+    - ANDROID_TARGET=android-24 ANDROID_ABI=x86
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-24.0.3
+    - android-24
+    - sys-img-armeabi-v7a-android-24s
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-android-support
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+script:
+  # Unit Test
+  - ./gradlew test
