@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
   compileSdkVersion 24
@@ -10,6 +11,7 @@ android {
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    buildConfigField 'String', 'INSTAGRAM_ACCESS_TOKEN', getToken('instragram_access_token')
   }
   buildTypes {
     release {
@@ -27,6 +29,21 @@ dependencies {
   compile 'com.android.support:appcompat-v7:24.2.1'
   // Api
   compile 'com.squareup.retrofit2:retrofit:2.1.0'
+  compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
+  // Http client
+  compile 'com.squareup.okhttp3:okhttp:3.4.1'
+  // Json parsing
   compile 'com.squareup.moshi:moshi:1.3.0'
+  // ssDependency injection
+  compile 'com.google.dagger:dagger:2.7'
+  apt 'com.google.dagger:dagger-compiler:2.7'
+
   testCompile 'junit:junit:4.12'
+}
+
+def getToken(String key) {
+  def tokenPropertiesFile = rootProject.file("token.properties");
+  def tokenProperties = new Properties()
+  tokenProperties.load(new FileInputStream(tokenPropertiesFile))
+  tokenProperties[key]
 }
