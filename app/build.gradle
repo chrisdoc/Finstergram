@@ -11,7 +11,7 @@ android {
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    buildConfigField 'String', 'INSTAGRAM_ACCESS_TOKEN', getToken('instragram_access_token')
+    buildConfigField 'String', 'INSTAGRAM_ACCESS_TOKEN', getToken('instagram_access_token')
   }
   buildTypes {
     release {
@@ -45,5 +45,5 @@ def getToken(String key) {
   def tokenPropertiesFile = rootProject.file("token.properties");
   def tokenProperties = new Properties()
   tokenProperties.load(new FileInputStream(tokenPropertiesFile))
-  tokenProperties[key]
+  tokenProperties[key] ?: "\"\""
 }
