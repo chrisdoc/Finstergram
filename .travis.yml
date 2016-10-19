@@ -19,6 +19,8 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+before_script:
+  - source environmentSetup.sh && copyEnvVarsToGradleProperties
 script:
   # Unit Test
   - ./gradlew test
