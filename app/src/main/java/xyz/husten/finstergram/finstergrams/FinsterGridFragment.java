@@ -53,7 +53,6 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
     recyclerView.setAdapter(createAdapter(Collections.<Result>emptyList()));
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override public void onRefresh() {
