@@ -12,8 +12,8 @@ public interface FinstergramsContract {
   interface View extends BaseView<Presenter> {
     void setLoadingIndicator(boolean active);
     void showResults(SearchResult result);
-    void showNoResults();
     void openResult(Result result);
+    void showError(String error);
   }
 
   interface Presenter extends BasePresenter {

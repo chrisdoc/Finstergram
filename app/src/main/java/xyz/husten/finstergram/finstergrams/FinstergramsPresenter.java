@@ -41,6 +41,7 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
         if (showLoadingUI) {
           finstergramsView.setLoadingIndicator(false);
         }
+        finstergramsView.showError(t.getMessage());
       }
     });
   }

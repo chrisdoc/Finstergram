@@ -6,11 +6,13 @@ import java.util.List;
 import okhttp3.Request;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.notification.Failure;
 import org.mockito.Mock;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.husten.finstergram.api.InstagramApi;
+import xyz.husten.finstergram.helpers.FailureCall;
 import xyz.husten.finstergram.helpers.SuccessCall;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
@@ -74,5 +76,13 @@ public class FinstergramsPresenterTest {
     Result r = result.results.get(0);
     presenter.openResultDetails(r);
     verify(view).openResult(r);
+  }
+
+  @Test public void showError() {
+    reset(api);
+    Exception e = new Exception("Unknown access token");
+    when(api.search(anyDouble(), anyDouble(), anyInt())).thenReturn(new FailureCall(e));
+    presenter.loadResults(true);
+    verify(view).showError(e.getMessage());
   }
 }

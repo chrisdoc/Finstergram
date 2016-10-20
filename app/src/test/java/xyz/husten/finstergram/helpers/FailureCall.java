@@ -5,19 +5,20 @@ import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import xyz.husten.finstergram.model.SearchResult;
 
-public class FailureCall<T extends Throwable> implements Call<T> {
-  private T failure;
+public class FailureCall implements Call<SearchResult> {
+  private Throwable failure;
 
-  public FailureCall(T response) {
+  public FailureCall(Throwable response) {
     this.failure = response;
   }
 
-  @Override public Response<T> execute() throws IOException {
+  @Override public Response<SearchResult> execute() throws IOException {
     return null;
   }
 
-  @Override public void enqueue(Callback<T> callback) {
+  @Override public void enqueue(Callback<SearchResult> callback) {
     callback.onFailure(this, failure);
   }
 
@@ -33,7 +34,7 @@ public class FailureCall<T extends Throwable> implements Call<T> {
     return false;
   }
 
-  @Override public Call<T> clone() {
+  @Override public Call<SearchResult> clone() {
     return null;
   }
 

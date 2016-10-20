@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -99,8 +100,9 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
     recyclerView.swapAdapter(createAdapter(result.results), true);
   }
 
-  @Override public void showNoResults() {
-
+  @Override public void showError(String error) {
+    Snackbar.make(recyclerView, error, Snackbar.LENGTH_LONG)
+        .show();
   }
 
   @Override public void setPresenter(FinstergramsContract.Presenter presenter) {
