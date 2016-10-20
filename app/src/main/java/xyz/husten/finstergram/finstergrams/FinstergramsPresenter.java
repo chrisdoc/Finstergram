@@ -46,7 +46,7 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
   }
 
   @Override public void openResultDetails(@NonNull Result requestedResult) {
-
+    finstergramsView.openResultDetailsUi(requestedResult.images.standardResolution.url);
   }
 
   @Override public void start() {

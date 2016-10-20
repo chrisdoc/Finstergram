@@ -1,6 +1,7 @@
 package xyz.husten.finstergram.finstergrams;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -22,6 +23,7 @@ import xyz.husten.finstergram.R;
 import xyz.husten.finstergram.components.DaggerNetComponent;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
+import xyz.husten.finstergram.utils.FullScreenImageActivity;
 
 public class FinsterGridFragment extends Fragment implements FinstergramsContract.View {
 
@@ -101,6 +103,12 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
 
   @Override public void setPresenter(FinstergramsContract.Presenter presenter) {
     this.presenter = presenter;
+  }
+
+  @Override public void openResultDetailsUi(String url) {
+    Intent intent = new Intent(getContext(), FullScreenImageActivity.class);
+    intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, url);
+    startActivity(intent);
   }
 
   private FinstergramsAdapter createAdapter(List<Result> results) {
