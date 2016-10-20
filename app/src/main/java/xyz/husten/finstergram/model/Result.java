@@ -10,6 +10,8 @@ public class Result implements Parcelable {
   public Counter comments;
   public User user;
   public ImageSet images;
+  public Location location;
+  public String link;
 
   protected Result(Parcel in) {
     id = in.readString();
@@ -18,6 +20,23 @@ public class Result implements Parcelable {
     comments = in.readParcelable(Counter.class.getClassLoader());
     user = in.readParcelable(User.class.getClassLoader());
     images = in.readParcelable(ImageSet.class.getClassLoader());
+    location = in.readParcelable(Location.class.getClassLoader());
+    link = in.readString();
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(id);
+    dest.writeString(type);
+    dest.writeParcelable(likes, flags);
+    dest.writeParcelable(comments, flags);
+    dest.writeParcelable(user, flags);
+    dest.writeParcelable(images, flags);
+    dest.writeParcelable(location, flags);
+    dest.writeString(link);
+  }
+
+  @Override public int describeContents() {
+    return 0;
   }
 
   public static final Creator<Result> CREATOR = new Creator<Result>() {
@@ -29,17 +48,4 @@ public class Result implements Parcelable {
       return new Result[size];
     }
   };
-
-  @Override public int describeContents() {
-    return 0;
-  }
-
-  @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(id);
-    dest.writeString(type);
-    dest.writeParcelable(likes, flags);
-    dest.writeParcelable(comments, flags);
-    dest.writeParcelable(user, flags);
-    dest.writeParcelable(images, flags);
-  }
 }

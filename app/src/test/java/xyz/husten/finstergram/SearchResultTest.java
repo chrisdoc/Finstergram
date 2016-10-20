@@ -11,6 +11,7 @@ import okio.BufferedSource;
 import okio.Okio;
 import org.junit.Before;
 import org.junit.Test;
+import xyz.husten.finstergram.model.Location;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
 
@@ -60,6 +61,16 @@ public class SearchResultTest {
   public void resultsFirstElementId() {
     Result result = searchResult.results.get(0);
     assertEquals("1363631508120490413_8979339", result.id);
+  }
+
+  @Test
+  public void resultsFirstElementLocation() {
+    Result result = searchResult.results.get(0);
+    Location location = result.location;
+    assertEquals("Alexanderplatz Berlin", location.name);
+    assertEquals(213645520, location.id);
+    assertEquals(52.52128, location.latitude, 0.01);
+    assertEquals(13.4126999, location.longitude, 0.01);
   }
 
   @Test

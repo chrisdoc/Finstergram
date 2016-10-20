@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -40,6 +41,7 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     if(getActivity()!=null) {
       ((FinstergramApp)getActivity().getApplication()).getNetComponent().inject(this);
     }
+    setHasOptionsMenu(true);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +49,22 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     View view = inflater.inflate(R.layout.fragment_finstergram_detail, container, false);
     ButterKnife.bind(this, view);
     return view;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menuDirections:
+        presenter.directions();
+        return true;
+      case R.id.menuMap:
+        presenter.map();
+        return true;
+      case R.id.menuShare:
+        presenter.share();
+        return true;
+      default:
+        return false;
+    }
   }
 
   @Override public void onAttach(Context context) {
@@ -78,5 +96,32 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     Intent intent = new Intent(getContext(), FullScreenImageActivity.class);
     intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, url);
     startActivity(intent);
+  }
+
+  @Override public void showDirectionUri(String googleMapUri) {
+    Uri gmmIntentUri = Uri.parse(googleMapUri);
+    openGoogleMaps(gmmIntentUri);
+  }
+
+  @Override public void showMapUri(String googleMapUri) {
+    Uri gmmIntentUri = Uri.parse(googleMapUri);
+    openGoogleMaps(gmmIntentUri);
+  }
+
+  @Override public void shareLink(String link) {
+    Intent share = new Intent(android.content.Intent.ACTION_SEND);
+    share.setType("text/plain");
+    share.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+
+    share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
+    share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message, link));
+
+    startActivity(Intent.createChooser(share, "Share Instagram"));
+  }
+
+  private void openGoogleMaps(Uri uri) {
+    Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+    mapIntent.setPackage("com.google.android.apps.maps");
+    startActivity(mapIntent);
   }
 }

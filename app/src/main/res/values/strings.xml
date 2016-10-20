@@ -2,4 +2,9 @@
   <string name="app_name">Finstergram</string>
   <string name="likes">❤️ %1$d</string>
   <string name="comments">💬 %1$d</string>
+  <string name="share">Share</string>
+  <string name="directions">Directions</string>
+  <string name="map">Map</string>
+  <string name="share_message">Hey check out this cool picture I found %1$s</string>
+  <string name="share_subject">Look at this</string>
 </resources>
