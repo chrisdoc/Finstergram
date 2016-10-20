@@ -6,7 +6,7 @@ import com.squareup.moshi.Json;
 
 public class ImageSet implements Parcelable {
   @Json(name = "low_resolution")
-  public Image lowResoultion;
+  public Image lowResolution;
   public Image thumbnail;
   @Json(name = "standard_resolution")
   public Image standardResolution;
@@ -16,7 +16,7 @@ public class ImageSet implements Parcelable {
   }
 
   protected ImageSet(Parcel in) {
-    lowResoultion = in.readParcelable(Image.class.getClassLoader());
+    lowResolution = in.readParcelable(Image.class.getClassLoader());
     thumbnail = in.readParcelable(Image.class.getClassLoader());
     standardResolution = in.readParcelable(Image.class.getClassLoader());
   }
@@ -36,7 +36,7 @@ public class ImageSet implements Parcelable {
   }
 
   @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeParcelable(lowResoultion, flags);
+    dest.writeParcelable(lowResolution, flags);
     dest.writeParcelable(thumbnail, flags);
     dest.writeParcelable(standardResolution, flags);
   }

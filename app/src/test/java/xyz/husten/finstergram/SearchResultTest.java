@@ -2,11 +2,7 @@ package xyz.husten.finstergram;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import okio.BufferedSource;
 import okio.Okio;
 import org.junit.Before;
@@ -82,9 +78,9 @@ public class SearchResultTest {
   @Test
   public void resultsFirstElementLowResolutionImage() {
     Result result = searchResult.results.get(0);
-    assertEquals(320, result.images.lowResoultion.width);
-    assertEquals(239, result.images.lowResoultion.height);
-    assertEquals("https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14676648_316932122018857_5087099633503567872_n.jpg?ig_cache_key=MTM2MzYzMTUwODEyMDQ5MDQxMw%3D%3D.2", result.images.lowResoultion.url);
+    assertEquals(320, result.images.lowResolution.width);
+    assertEquals(239, result.images.lowResolution.height);
+    assertEquals("https://scontent.cdninstagram.com/t51.2885-15/s320x320/e35/14676648_316932122018857_5087099633503567872_n.jpg?ig_cache_key=MTM2MzYzMTUwODEyMDQ5MDQxMw%3D%3D.2", result.images.lowResolution.url);
   }
 
   @Test
