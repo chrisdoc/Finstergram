@@ -13,6 +13,7 @@ import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
 import xyz.husten.finstergram.api.InstagramApi;
 import xyz.husten.finstergram.model.SearchResult;
+import xyz.husten.finstergram.repository.ResultsRepository;
 import xyz.husten.finstergram.utils.ActivityUtils;
 
 public class FinsterGridActivity extends AppCompatActivity {

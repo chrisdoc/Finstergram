@@ -3,15 +3,20 @@ package xyz.husten.finstergram.findstergramdetail;
 import java.util.Locale;
 import javax.inject.Inject;
 import xyz.husten.finstergram.model.Result;
+import xyz.husten.finstergram.repository.ResultsDataSource;
+import xyz.husten.finstergram.repository.ResultsRepository;
 
 public final class FinstergramDetailPresenter implements FinstergramDetailContract.Presenter {
   private final FinstergramDetailContract.View view;
-  private final Result result;
+  private final ResultsRepository resultsRepository;
+  private final String id;
+  private Result result;
 
   @Inject
-  FinstergramDetailPresenter(FinstergramDetailContract.View view, Result result) {
+  FinstergramDetailPresenter(FinstergramDetailContract.View view, ResultsRepository resultsRepository, String id) {
     this.view = view;
-    this.result = result;
+    this.resultsRepository = resultsRepository;
+    this.id = id;
   }
 
   @Inject
@@ -20,6 +25,18 @@ public final class FinstergramDetailPresenter implements FinstergramDetailContra
   }
 
   @Override public void start() {
+    resultsRepository.loadResult(id, new ResultsDataSource.GetResultCallback() {
+      @Override public void onResultLoaded(Result result) {
+        bindResult(result);
+      }
+      @Override public void onResultNotAvailable(String error) {
+
+      }
+    });
+  }
+
+  protected void bindResult(Result result) {
+    this.result = result;
     view.showResult(result);
   }
 

@@ -22,7 +22,6 @@ import java.util.List;
 import javax.inject.Inject;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
-import xyz.husten.finstergram.components.DaggerNetComponent;
 import xyz.husten.finstergram.findstergramdetail.FinstergramDetailActivity;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
@@ -56,7 +55,7 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
     recyclerView.setAdapter(createAdapter(Collections.<Result>emptyList()));
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override public void onRefresh() {
-        presenter.loadResults(true);
+        presenter.loadResults(true, false);
       }
     });
   }
@@ -110,7 +109,7 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
 
   @Override public void openResult(Result result) {
     Intent intent = new Intent(getContext(), FinstergramDetailActivity.class);
-    intent.putExtra(FinstergramDetailActivity.EXTRA_RESULT_DATA, result);
+    intent.putExtra(FinstergramDetailActivity.EXTRA_RESULT_ID, result.id);
     startActivity(intent);
   }
 

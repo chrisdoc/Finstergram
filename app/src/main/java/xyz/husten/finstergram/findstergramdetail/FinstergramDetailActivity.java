@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import javax.inject.Inject;
+import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.utils.ActivityUtils;
 
 public class FinstergramDetailActivity extends AppCompatActivity {
-  public static final String EXTRA_RESULT_DATA = "RESULT_DATA";
+  public static final String EXTRA_RESULT_ID = "RESULT_ID";
   @Inject FinstergramDetailPresenter presenter;
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -29,11 +30,12 @@ public class FinstergramDetailActivity extends AppCompatActivity {
           getFragmentManager(), detailFragment, R.id.content_frame);
     }
 
-    Result result = getIntent().getParcelableExtra(EXTRA_RESULT_DATA);
+    String resultId = getIntent().getStringExtra(EXTRA_RESULT_ID);
 
     DaggerFinstergramDetailComponent
         .builder()
-        .finstergramDetailModule(new FinstergramDetailModule(detailFragment, result))
+        .netComponent(((FinstergramApp)getApplication()).getNetComponent())
+        .finstergramDetailModule(new FinstergramDetailModule(detailFragment, resultId))
         .build()
         .inject(this);
   }

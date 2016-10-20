@@ -17,7 +17,7 @@ public interface FinstergramsContract {
   }
 
   interface Presenter extends BasePresenter {
-    void loadResults(final boolean showLoadingUI);
+    void loadResults(final boolean showLoadingUI, final boolean useCache);
     void openResultDetails(@NonNull Result requestedResult);
   }
 }

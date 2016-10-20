@@ -1,10 +1,10 @@
 package xyz.husten.finstergram.findstergramdetail;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,6 +90,9 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     picasso.load(result.images.standardResolution.url).into(imageView);
     likes.setText(getString(R.string.likes, result.likes.count));
     comments.setText(getString(R.string.comments, result.comments.count));
+    if(getActivity() != null) {
+      ((FinstergramDetailActivity)getActivity()).getSupportActionBar().setTitle(result.location.name);
+    }
   }
 
   @Override public void openImage(String url) {
@@ -116,7 +119,7 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
     share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message, link));
 
-    startActivity(Intent.createChooser(share, "Share Instagram"));
+    startActivity(Intent.createChooser(share, getString(R.string.share_chooser_title)));
   }
 
   private void openGoogleMaps(Uri uri) {

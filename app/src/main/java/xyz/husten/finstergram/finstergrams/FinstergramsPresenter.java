@@ -8,16 +8,18 @@ import retrofit2.Response;
 import xyz.husten.finstergram.api.InstagramApi;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
+import xyz.husten.finstergram.repository.ResultsDataSource;
+import xyz.husten.finstergram.repository.ResultsRepository;
 
 final class FinstergramsPresenter implements FinstergramsContract.Presenter {
 
-  private final InstagramApi api;
   private final FinstergramsContract.View finstergramsView;
+  private final ResultsRepository resultsRepository;
 
   @Inject
-  FinstergramsPresenter(InstagramApi api, FinstergramsContract.View finstergramsView) {
-    this.api = api;
+  FinstergramsPresenter(FinstergramsContract.View finstergramsView, ResultsRepository resultsRepository) {
     this.finstergramsView = finstergramsView;
+    this.resultsRepository = resultsRepository;
   }
 
   @Inject
@@ -25,29 +27,30 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
     finstergramsView.setPresenter(this);
   }
 
-  @Override public void loadResults(final boolean showLoadingUI) {
+  @Override public void loadResults(final boolean showLoadingUI, final boolean useCache) {
     if (showLoadingUI) {
       finstergramsView.setLoadingIndicator(true);
     }
-    search(52.52,13.413, 5000).enqueue(new Callback<SearchResult>() {
-      @Override public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-        finstergramsView.showResults(response.body());
-        if (showLoadingUI) {
-          finstergramsView.setLoadingIndicator(false);
-        }
-      }
 
-      @Override public void onFailure(Call<SearchResult> call, Throwable t) {
-        if (showLoadingUI) {
-          finstergramsView.setLoadingIndicator(false);
-        }
-        finstergramsView.showError(t.getMessage());
-      }
-    });
-  }
+    if (!useCache) {
+      resultsRepository.refreshResults();
+    }
 
-  private Call<SearchResult> search(double latitude, double longitude, int distance) {
-    return api.search(latitude, longitude, distance);
+    resultsRepository.loadResults(52.52, 13.413, 5000, new ResultsDataSource.LoadResultsCallback() {
+          @Override public void onResultsLoaded(SearchResult result) {
+            finstergramsView.showResults(result);
+            if (showLoadingUI) {
+              finstergramsView.setLoadingIndicator(false);
+            }
+          }
+
+          @Override public void onDataNotAvailable(String error) {
+            if (showLoadingUI) {
+              finstergramsView.setLoadingIndicator(false);
+            }
+            finstergramsView.showError(error);
+          }
+        });
   }
 
   @Override public void openResultDetails(@NonNull Result requestedResult) {
@@ -55,6 +58,6 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
   }
 
   @Override public void start() {
-    loadResults(true);
+    loadResults(true, true);
   }
 }

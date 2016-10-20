@@ -4,23 +4,20 @@ import dagger.Module;
 import dagger.Provides;
 import xyz.husten.finstergram.model.Result;
 
-@Module
-public class FinstergramDetailModule {
+@Module public class FinstergramDetailModule {
   private final FinstergramDetailContract.View view;
-  private final Result result;
+  private final String resultId;
 
-  public FinstergramDetailModule(FinstergramDetailContract.View view, Result result) {
+  public FinstergramDetailModule(FinstergramDetailContract.View view, String resultId) {
     this.view = view;
-    this.result = result;
+    this.resultId = resultId;
   }
 
-  @Provides
-  FinstergramDetailContract.View provideFinstergramsContractView() {
+  @Provides FinstergramDetailContract.View provideFinstergramsContractView() {
     return view;
   }
 
-  @Provides
-  Result provideResult() {
-    return result;
+  @Provides String provideResultId() {
+    return resultId;
   }
- }
+}
