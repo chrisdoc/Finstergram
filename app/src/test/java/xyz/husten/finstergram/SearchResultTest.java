@@ -57,6 +57,12 @@ public class SearchResultTest {
   }
 
   @Test
+  public void resultsFirstElementId() {
+    Result result = searchResult.results.get(0);
+    assertEquals("1363631508120490413_8979339", result.id);
+  }
+
+  @Test
   public void resultsFirstElementComments() {
     Result result = searchResult.results.get(0);
     assertEquals(0, result.comments.count);
