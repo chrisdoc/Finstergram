@@ -1,7 +1,6 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
 import android.support.annotation.NonNull;
-import java.util.List;
 import xyz.husten.finstergram.BasePresenter;
 import xyz.husten.finstergram.BaseView;
 import xyz.husten.finstergram.model.Result;

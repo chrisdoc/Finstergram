@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import android.app.Fragment;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

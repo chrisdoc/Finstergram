@@ -1,19 +1,16 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.squareup.picasso.Picasso;
@@ -22,10 +19,9 @@ import java.util.List;
 import javax.inject.Inject;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
-import xyz.husten.finstergram.findstergramdetail.FinstergramDetailActivity;
+import xyz.husten.finstergram.ui.findstergramdetail.FinstergramDetailActivity;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
-import xyz.husten.finstergram.utils.FullScreenImageActivity;
 
 public class FinsterGridFragment extends Fragment implements FinstergramsContract.View {
 

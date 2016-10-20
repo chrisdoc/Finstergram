@@ -11,7 +11,7 @@
     android:name=".FinstergramApp"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".finstergrams.FinsterGridActivity">
+    <activity android:name=".ui.finstergrams.FinsterGridActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
     </activity>
     <activity android:name=".utils.FullScreenImageActivity">
     </activity>
-    <activity android:name=".findstergramdetail.FinstergramDetailActivity">
+    <activity android:name=".ui.findstergramdetail.FinstergramDetailActivity">
     </activity>
   </application>
 

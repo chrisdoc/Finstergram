@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import xyz.husten.finstergram.BasePresenter;
 import xyz.husten.finstergram.BaseView;

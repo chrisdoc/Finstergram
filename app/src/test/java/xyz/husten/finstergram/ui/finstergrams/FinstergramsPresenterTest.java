@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
 import java.util.ArrayList;
 import java.util.List;

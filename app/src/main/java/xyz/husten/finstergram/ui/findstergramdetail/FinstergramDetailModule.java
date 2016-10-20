@@ -1,8 +1,7 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import dagger.Module;
 import dagger.Provides;
-import xyz.husten.finstergram.model.Result;
 
 @Module public class FinstergramDetailModule {
   private final FinstergramDetailContract.View view;

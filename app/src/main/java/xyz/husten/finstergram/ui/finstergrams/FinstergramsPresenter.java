@@ -1,11 +1,7 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
 import android.support.annotation.NonNull;
 import javax.inject.Inject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import xyz.husten.finstergram.api.InstagramApi;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
 import xyz.husten.finstergram.repository.ResultsDataSource;

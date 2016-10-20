@@ -1,6 +1,5 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
-import java.util.Locale;
 import javax.inject.Inject;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.repository.ResultsDataSource;

@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.Menu;
 import javax.inject.Inject;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
-import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.utils.ActivityUtils;
 
 public class FinstergramDetailActivity extends AppCompatActivity {

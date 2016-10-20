@@ -1,19 +1,11 @@
-package xyz.husten.finstergram.finstergrams;
+package xyz.husten.finstergram.ui.finstergrams;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import javax.inject.Inject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
-import xyz.husten.finstergram.api.InstagramApi;
-import xyz.husten.finstergram.model.SearchResult;
-import xyz.husten.finstergram.repository.ResultsRepository;
 import xyz.husten.finstergram.utils.ActivityUtils;
 
 public class FinsterGridActivity extends AppCompatActivity {

@@ -1,17 +1,15 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import xyz.husten.finstergram.model.Image;
 import xyz.husten.finstergram.model.ImageSet;
 import xyz.husten.finstergram.model.Location;
 import xyz.husten.finstergram.model.Result;
-import xyz.husten.finstergram.model.SearchResult;
 import xyz.husten.finstergram.repository.ResultsDataSource;
 import xyz.husten.finstergram.repository.ResultsRepository;
 

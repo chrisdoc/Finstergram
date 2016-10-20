@@ -1,4 +1,4 @@
-package xyz.husten.finstergram.findstergramdetail;
+package xyz.husten.finstergram.ui.findstergramdetail;
 
 import dagger.Component;
 import xyz.husten.finstergram.components.NetComponent;
