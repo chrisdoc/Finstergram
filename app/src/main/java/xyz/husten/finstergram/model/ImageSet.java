@@ -11,6 +11,10 @@ public class ImageSet implements Parcelable {
   @Json(name = "standard_resolution")
   public Image standardResolution;
 
+  public ImageSet() {
+
+  }
+
   protected ImageSet(Parcel in) {
     lowResoultion = in.readParcelable(Image.class.getClassLoader());
     thumbnail = in.readParcelable(Image.class.getClassLoader());

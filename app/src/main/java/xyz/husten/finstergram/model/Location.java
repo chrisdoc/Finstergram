@@ -9,6 +9,13 @@ public class Location implements Parcelable{
   public int id;
   public String name;
 
+  public Location(int id, double latitude, double longitude, String name) {
+    this.id = id;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.name = name;
+  }
+
   protected Location(Parcel in) {
     latitude = in.readDouble();
     longitude = in.readDouble();

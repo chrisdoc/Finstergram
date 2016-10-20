@@ -29,7 +29,7 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
     if (showLoadingUI) {
       finstergramsView.setLoadingIndicator(true);
     }
-    api.search("52.52","13.413", 5000).enqueue(new Callback<SearchResult>() {
+    search(52.52,13.413, 5000).enqueue(new Callback<SearchResult>() {
       @Override public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
         finstergramsView.showResults(response.body());
         if (showLoadingUI) {
@@ -43,6 +43,10 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
         }
       }
     });
+  }
+
+  private Call<SearchResult> search(double latitude, double longitude, int distance) {
+    return api.search(latitude, longitude, distance);
   }
 
   @Override public void openResultDetails(@NonNull Result requestedResult) {

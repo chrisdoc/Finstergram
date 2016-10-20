@@ -7,5 +7,5 @@ import xyz.husten.finstergram.model.SearchResult;
 
 public interface InstagramApi {
   @GET("media/search")
-  public Call<SearchResult> search(@Query("lat") String latitude, @Query("lng") String longitude, @Query("distance") int distance);
+  public Call<SearchResult> search(@Query("lat") double latitude, @Query("lng") double longitude, @Query("distance") int distance);
 }

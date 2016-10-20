@@ -8,6 +8,12 @@ public class Image implements Parcelable {
   public int width;
   public int height;
 
+  public Image(String url, int width, int height) {
+    this.url = url;
+    this.width = width;
+    this.height = height;
+  }
+
   protected Image(Parcel in) {
     url = in.readString();
     width = in.readInt();

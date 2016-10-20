@@ -13,6 +13,10 @@ public class Result implements Parcelable {
   public Location location;
   public String link;
 
+  public Result() {
+
+  }
+
   protected Result(Parcel in) {
     id = in.readString();
     type = in.readString();
