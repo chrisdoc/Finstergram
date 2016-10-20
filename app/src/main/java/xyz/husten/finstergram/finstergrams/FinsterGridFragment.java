@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import javax.inject.Inject;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
 import xyz.husten.finstergram.components.DaggerNetComponent;
+import xyz.husten.finstergram.findstergramdetail.FinstergramDetailActivity;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
 import xyz.husten.finstergram.utils.FullScreenImageActivity;
@@ -105,9 +107,9 @@ public class FinsterGridFragment extends Fragment implements FinstergramsContrac
     this.presenter = presenter;
   }
 
-  @Override public void openResultDetailsUi(String url) {
-    Intent intent = new Intent(getContext(), FullScreenImageActivity.class);
-    intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, url);
+  @Override public void openResult(Result result) {
+    Intent intent = new Intent(getContext(), FinstergramDetailActivity.class);
+    intent.putExtra(FinstergramDetailActivity.EXTRA_RESULT_DATA, result);
     startActivity(intent);
   }
 

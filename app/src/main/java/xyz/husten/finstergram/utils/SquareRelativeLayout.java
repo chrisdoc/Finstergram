@@ -21,7 +21,8 @@ public class SquareRelativeLayout extends RelativeLayout {
 
   @Override
   public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    int width = Math.min(widthMeasureSpec, heightMeasureSpec);
     //noinspection SuspiciousNameCombination
-    super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+    super.onMeasure(width, width);
   }
 }

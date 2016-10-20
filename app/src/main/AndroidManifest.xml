@@ -20,6 +20,8 @@
     </activity>
     <activity android:name=".utils.FullScreenImageActivity">
     </activity>
+    <activity android:name=".findstergramdetail.FinstergramDetailActivity">
+    </activity>
   </application>
 
 </manifest>

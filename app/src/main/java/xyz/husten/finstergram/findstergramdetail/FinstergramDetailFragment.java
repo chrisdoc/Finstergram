@@ -1,0 +1,82 @@
+package xyz.husten.finstergram.findstergramdetail;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import android.widget.ImageView;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.squareup.picasso.Picasso;
+import javax.inject.Inject;
+import xyz.husten.finstergram.FinstergramApp;
+import xyz.husten.finstergram.R;
+import xyz.husten.finstergram.model.Result;
+import xyz.husten.finstergram.utils.FullScreenImageActivity;
+
+public class FinstergramDetailFragment extends Fragment implements FinstergramDetailContract.View {
+
+  private FinstergramDetailContract.Presenter presenter;
+  @Inject Picasso picasso;
+
+  @BindView(R.id.username) TextView username;
+  @BindView(R.id.likes) TextView likes;
+  @BindView(R.id.comments) TextView comments;
+  @BindView(R.id.image) ImageView imageView;
+
+  public static FinstergramDetailFragment newInstance() {
+    return new FinstergramDetailFragment();
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if(getActivity()!=null) {
+      ((FinstergramApp)getActivity().getApplication()).getNetComponent().inject(this);
+    }
+  }
+
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    // Inflate the layout for this fragment
+    View view = inflater.inflate(R.layout.fragment_finstergram_detail, container, false);
+    ButterKnife.bind(this, view);
+    return view;
+  }
+
+  @Override public void onAttach(Context context) {
+    super.onAttach(context);
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    presenter.start();
+  }
+
+  @OnClick(R.id.image)
+  public void onImageClick() {
+    presenter.imageClicked();
+  }
+
+  @Override public void setPresenter(FinstergramDetailContract.Presenter presenter) {
+    this.presenter = presenter;
+  }
+
+  @Override public void showResult(Result result) {
+    username.setText(result.user.username);
+    picasso.load(result.images.standardResolution.url).into(imageView);
+    likes.setText(getString(R.string.likes, result.likes.count));
+    comments.setText(getString(R.string.comments, result.comments.count));
+  }
+
+  @Override public void openImage(String url) {
+    Intent intent = new Intent(getContext(), FullScreenImageActivity.class);
+    intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, url);
+    startActivity(intent);
+  }
+}

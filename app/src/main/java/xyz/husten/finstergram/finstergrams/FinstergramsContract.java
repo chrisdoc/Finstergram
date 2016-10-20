@@ -13,7 +13,7 @@ public interface FinstergramsContract {
     void setLoadingIndicator(boolean active);
     void showResults(SearchResult result);
     void showNoResults();
-    void openResultDetailsUi(String url);
+    void openResult(Result result);
   }
 
   interface Presenter extends BasePresenter {
