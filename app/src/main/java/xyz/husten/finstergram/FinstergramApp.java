@@ -11,8 +11,9 @@ public class FinstergramApp extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
+
     netComponent = DaggerNetComponent.builder()
-        .appModule(new AppModule(this))
+        .appModule(new AppModule(getApplicationContext()))
         .netModule(new NetModule("https://api.instagram.com/v1/", BuildConfig.INSTAGRAM_ACCESS_TOKEN))
         .build();
   }

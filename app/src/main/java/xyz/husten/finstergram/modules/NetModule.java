@@ -1,7 +1,10 @@
 package xyz.husten.finstergram.modules;
 
 import android.app.Application;
+import android.content.Context;
+import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.moshi.Moshi;
+import com.squareup.picasso.Picasso;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -24,9 +27,9 @@ public class NetModule {
 
   @Provides
   @Singleton
-  Cache provideOkHttpCache(Application application) {
+  Cache provideOkHttpCache(Context context) {
     int cacheSize = 10 * 1024 * 1024; // 10 MiB
-    Cache cache = new Cache(application.getCacheDir(), cacheSize);
+    Cache cache = new Cache(context.getCacheDir(), cacheSize);
     return cache;
   }
 
@@ -68,6 +71,15 @@ public class NetModule {
   @Singleton
   InstagramApi provideInstagramApi(Retrofit retrofit) {
     return retrofit.create(InstagramApi.class);
+  }
+
+  @Provides
+  @Singleton
+  Picasso providePicasso(Context context, OkHttpClient client) {
+    Picasso picasso = new Picasso.Builder(context)
+        .downloader(new OkHttp3Downloader(client))
+        .build();
+    return picasso;
   }
 
 }

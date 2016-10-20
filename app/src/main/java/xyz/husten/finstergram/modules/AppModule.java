@@ -1,6 +1,7 @@
 package xyz.husten.finstergram.modules;
 
 import android.app.Application;
+import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -8,15 +9,15 @@ import javax.inject.Singleton;
 @Module
 public class AppModule {
 
-  Application application;
+  Context context;
 
-  public AppModule(Application application) {
-    this.application = application;
+  public AppModule(Context context) {
+    this.context = context;
   }
 
   @Provides
   @Singleton
-  Application providesApplication() {
-    return application;
+  Context providesApplication() {
+    return context;
   }
 }

@@ -15,7 +15,6 @@ import xyz.husten.finstergram.utils.ActivityUtils;
 
 public class FinsterGridActivity extends Activity {
   @Inject FinstergramsPresenter presenter;
-  @Inject InstagramApi api;
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_finster_grid);

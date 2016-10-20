@@ -29,7 +29,7 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
     if (showLoadingUI) {
       finstergramsView.setLoadingIndicator(true);
     }
-    api.search("52.52","13.413").enqueue(new Callback<SearchResult>() {
+    api.search("52.52","13.413", 5000).enqueue(new Callback<SearchResult>() {
       @Override public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
         finstergramsView.showResults(response.body());
         if (showLoadingUI) {

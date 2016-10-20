@@ -28,9 +28,15 @@ dependencies {
   })
   compile 'com.android.support:appcompat-v7:24.2.1'
   compile 'com.android.support:recyclerview-v7:24.2.1'
+
+  compile 'com.jakewharton:butterknife:8.4.0'
+  apt 'com.jakewharton:butterknife-compiler:8.4.0'
   // Api
   compile 'com.squareup.retrofit2:retrofit:2.1.0'
   compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
+  // Image loading
+  compile 'com.squareup.picasso:picasso:2.5.2'
+  compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
   // Http client
   compile 'com.squareup.okhttp3:okhttp:3.4.1'
   // Json parsing
