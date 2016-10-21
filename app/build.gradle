@@ -12,8 +12,8 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     buildConfigField 'String', 'INSTAGRAM_ACCESS_TOKEN', "\"" + INSTAGRAM_ACCESS_TOKEN + "\""
-    buildConfigField 'double', 'Latitude', "52.52"
-    buildConfigField 'double', 'Longitude', "13.413"
+    buildConfigField 'double', 'Latitude', "52.500342"
+    buildConfigField 'double', 'Longitude', "13.425170"
     manifestPlaceholders = [ GOOGLE_MAPS_API_KEY:  GOOGLE_MAPS_API_KEY ]
   }
   buildTypes {
