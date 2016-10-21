@@ -12,6 +12,7 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     buildConfigField 'String', 'INSTAGRAM_ACCESS_TOKEN', "\"" + INSTAGRAM_ACCESS_TOKEN + "\""
+    manifestPlaceholders = [ GOOGLE_MAPS_API_KEY:  GOOGLE_MAPS_API_KEY ]
   }
   buildTypes {
     release {
@@ -27,6 +28,7 @@ dependencies {
   compile 'com.android.support:appcompat-v7:24.2.1'
   compile 'com.android.support:recyclerview-v7:24.2.1'
   compile 'com.android.support:design:24.2.1'
+  compile 'com.google.android.gms:play-services-maps:9.6.1'
 
   // View Binding
   compile 'com.jakewharton:butterknife:8.4.0'

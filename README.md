@@ -9,9 +9,10 @@ Testing is done through Junit (JVM) and Espress(UI), both of the test are run on
 
 In order to retrieve images through Instagram an `ACCESS_TOKEN` needs to be [created](https://api.instagram.com/oauth/authorize/?client_id=bb608e380f824b069ffd11a5260a107d&scope=likes+comments+public_content&redirect_uri=https://hookb.in/E7ezabb8&response_type=token).
 
-To configure the app the `ACCESS_TOKEN` needs to be set as a `gradle.property`
+To configure the app the `ACCESS_TOKEN` needs to be set as a `gradle.property` in `~/.gradle/gradle.properties`
 ```sh
-echo "INSTAGRAM_ACCESS_TOKEN=<YOUR_SECURE_ACCESS_TOKEN>" >> ~/.gradle/gradle.properties
+INSTAGRAM_ACCESS_TOKEN=<YOUR_SECURE_ACCESS_TOKEN>
+GOOGLE_MAPS_API_KEY=<YOUR_SECURE_MAPS_API_KEY>
 ```
 
 Finstergram is proud to use the following Open Source Libraries:
@@ -22,3 +23,4 @@ Finstergram is proud to use the following Open Source Libraries:
  - [Moshi](https://github.com/square/moshi) - Great JSON de/serializer
  - [ButterKnife](http://jakewharton.github.io/butterknife/) - View Binding
  - [Support Library](https://developer.android.com/topic/libraries/support-library/index.html) - Material Goodness
+  - [Play Services Map](https://developers.google.com/maps/documentation/android-api/) - Google Maps

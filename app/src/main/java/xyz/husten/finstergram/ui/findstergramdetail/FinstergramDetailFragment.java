@@ -15,12 +15,23 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 import xyz.husten.finstergram.FinstergramApp;
 import xyz.husten.finstergram.R;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.utils.FullScreenImageActivity;
+
 
 public class FinstergramDetailFragment extends Fragment implements FinstergramDetailContract.View {
 
@@ -31,6 +42,8 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
   @BindView(R.id.likes) TextView likes;
   @BindView(R.id.comments) TextView comments;
   @BindView(R.id.image) ImageView imageView;
+  @BindView(R.id.mapview) MapView mapView;
+  private GoogleMap map;
 
   public static FinstergramDetailFragment newInstance() {
     return new FinstergramDetailFragment();
@@ -48,6 +61,25 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_finstergram_detail, container, false);
     ButterKnife.bind(this, view);
+    // Gets the MapView from the XML layout and creates it
+    mapView.onCreate(savedInstanceState);
+    final MapStyleOptions mapStyleOptions = MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_style);
+
+    // Gets to GoogleMap from the MapView and does initialization stuff
+     mapView.getMapAsync(new OnMapReadyCallback() {
+      @Override public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+        googleMap.getUiSettings().setAllGesturesEnabled(false);
+        googleMap.setMapStyle(mapStyleOptions);
+      }
+    });
+
+
+    // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
+    MapsInitializer.initialize(this.getActivity());
+
+
+    // Updates the location and zoom of the MapView
     return view;
   }
 
@@ -74,8 +106,26 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
   @Override public void onResume() {
     super.onResume();
     presenter.start();
+    mapView.onResume();
+   }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    mapView.onPause();
   }
 
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    mapView.onDestroy();
+  }
+
+  @Override
+  public void onLowMemory() {
+    super.onLowMemory();
+    mapView.onLowMemory();
+  }
   @OnClick(R.id.image)
   public void onImageClick() {
     presenter.imageClicked();
@@ -92,6 +142,15 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
     comments.setText(getString(R.string.comments, result.comments.count));
     if(getActivity() != null) {
       ((FinstergramDetailActivity)getActivity()).getSupportActionBar().setTitle(result.location.name);
+    }
+
+    if(map != null) {
+      LatLng position = new LatLng(result.location.latitude, result.location.longitude);
+      CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 14);
+      map.animateCamera(cameraUpdate);
+      map.addMarker(new MarkerOptions()
+          .position(position)
+          .title(result.location.name));
     }
   }
 
