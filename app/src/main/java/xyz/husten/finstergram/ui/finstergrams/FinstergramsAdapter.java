@@ -32,8 +32,8 @@ public class FinstergramsAdapter extends RecyclerView.Adapter<FinstergramsAdapte
 
   @Override public void onBindViewHolder(ResultViewHolder holder, int position) {
     final Result result = items.get(position);
-    holder.likeCount.setText("❤️ " + result.likes.count);
-    picasso.load(result.images.thumbnail.url).into(holder.imageView);
+    final String likes = holder.likeCount.getContext().getString(R.string.likes, result.likes.count);
+    holder.likeCount.setText(likes);
     picasso.load(result.images.thumbnail.url).fit().into(holder.imageView);
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
