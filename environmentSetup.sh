@@ -23,7 +23,6 @@ function copyEnvVarsToGradleProperties {
     GRADLE_PROPERTIES=$HOME"/.gradle/gradle.properties"
     export GRADLE_PROPERTIES
     echo "Gradle Properties should exist at $GRADLE_PROPERTIES"
-
     if [ ! -f "$GRADLE_PROPERTIES" ]; then
         echo "Gradle Properties does not exist"
 
@@ -31,6 +30,6 @@ function copyEnvVarsToGradleProperties {
         touch $GRADLE_PROPERTIES
 
         echo "Writing TEST_API_KEY to gradle.properties..."
-        echo "INSTAGRAM_ACCESS_TOKEN=$INSTAGRAM_ACCESS_TOKEN" >> $GRADLE_PROPERTIES
+        echo "INSTAGRAM_ACCESS_TOKEN=$INSTAGRAM_ACCESS_TOKEN\nGOOGLE_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY">> $GRADLE_PROPERTIES
     fi
 }
