@@ -8,6 +8,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import xyz.husten.finstergram.model.LatitudeLongitude;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
 import xyz.husten.finstergram.repository.ResultsDataSource;
@@ -26,17 +27,18 @@ public class FinstergramsPresenterTest {
 
   @Captor
   private ArgumentCaptor<ResultsDataSource.LoadResultsCallback> getLoadResultsCallbackCaptor;
+  private LatitudeLongitude latitudeLongitude;
 
   @Before public void setUp() {
     MockitoAnnotations.initMocks(this);
-
+    latitudeLongitude = new LatitudeLongitude(52.423, 12.43);
     List<Result> results = new ArrayList<>();
     results.add(createResult("123"));
     results.add(createResult("143"));
     results.add(createResult("153"));
     result = new SearchResult(results);
 
-    presenter = new FinstergramsPresenter(view, resultsRepository);
+    presenter = new FinstergramsPresenter(view, resultsRepository, latitudeLongitude);
   }
 
   private Result createResult(String id) {
@@ -57,14 +59,14 @@ public class FinstergramsPresenterTest {
 
   @Test public void verifyViewShowResults() {
     presenter.loadResults(true, true);
-    verify(resultsRepository).loadResults(anyDouble(), anyDouble(), anyInt(), getLoadResultsCallbackCaptor.capture());
+    verify(resultsRepository).loadResults(eq(latitudeLongitude.latitude), eq(latitudeLongitude.longitude), anyInt(), getLoadResultsCallbackCaptor.capture());
     getLoadResultsCallbackCaptor.getValue().onResultsLoaded(result);
     verify(view).showResults(result);
   }
 
   @Test public void verifyStartLoadsResults() {
     presenter.start();
-    verify(resultsRepository).loadResults(anyDouble(), anyDouble(), anyInt(), getLoadResultsCallbackCaptor.capture());
+    verify(resultsRepository).loadResults(eq(latitudeLongitude.latitude), eq(latitudeLongitude.longitude), anyInt(), getLoadResultsCallbackCaptor.capture());
     getLoadResultsCallbackCaptor.getValue().onResultsLoaded(result);
     verify(view).showResults(result);
   }

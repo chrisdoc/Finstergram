@@ -2,6 +2,7 @@ package xyz.husten.finstergram.ui.finstergrams;
 
 import android.support.annotation.NonNull;
 import javax.inject.Inject;
+import xyz.husten.finstergram.model.LatitudeLongitude;
 import xyz.husten.finstergram.model.Result;
 import xyz.husten.finstergram.model.SearchResult;
 import xyz.husten.finstergram.repository.ResultsDataSource;
@@ -11,11 +12,13 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
 
   private final FinstergramsContract.View finstergramsView;
   private final ResultsRepository resultsRepository;
+  private final LatitudeLongitude latitudeLongitude;
 
   @Inject
-  FinstergramsPresenter(FinstergramsContract.View finstergramsView, ResultsRepository resultsRepository) {
+  FinstergramsPresenter(FinstergramsContract.View finstergramsView, ResultsRepository resultsRepository, LatitudeLongitude latitudeLongitude) {
     this.finstergramsView = finstergramsView;
     this.resultsRepository = resultsRepository;
+    this.latitudeLongitude = latitudeLongitude;
   }
 
   @Inject
@@ -32,7 +35,7 @@ final class FinstergramsPresenter implements FinstergramsContract.Presenter {
       resultsRepository.refreshResults();
     }
 
-    resultsRepository.loadResults(52.52, 13.413, 5000, new ResultsDataSource.LoadResultsCallback() {
+    resultsRepository.loadResults(latitudeLongitude.latitude, latitudeLongitude.longitude, 5000, new ResultsDataSource.LoadResultsCallback() {
           @Override public void onResultsLoaded(SearchResult result) {
             finstergramsView.showResults(result);
             if (showLoadingUI) {

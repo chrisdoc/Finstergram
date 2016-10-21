@@ -1,10 +1,11 @@
 package xyz.husten.finstergram.modules;
 
-import android.app.Application;
 import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
+import xyz.husten.finstergram.BuildConfig;
+import xyz.husten.finstergram.model.LatitudeLongitude;
 
 @Module
 public class AppModule {
@@ -20,4 +21,5 @@ public class AppModule {
   Context providesApplication() {
     return context;
   }
+
 }
