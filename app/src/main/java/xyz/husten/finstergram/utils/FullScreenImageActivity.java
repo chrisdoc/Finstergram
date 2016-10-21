@@ -28,6 +28,6 @@ public class FullScreenImageActivity extends Activity {
 
   @Override public void onAttachedToWindow() {
     super.onAttachedToWindow();
-    picasso.load(imageUrl).fit().into(imageView);
+    picasso.load(imageUrl).fit().centerInside().into(imageView);
   }
 }
