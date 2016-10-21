@@ -137,7 +137,7 @@ public class FinstergramDetailFragment extends Fragment implements FinstergramDe
 
   @Override public void showResult(Result result) {
     username.setText(result.user.username);
-    picasso.load(result.images.standardResolution.url).into(imageView);
+    picasso.load(result.images.standardResolution.url).fit().into(imageView);
     likes.setText(getString(R.string.likes, result.likes.count));
     comments.setText(getString(R.string.comments, result.comments.count));
     if(getActivity() != null) {
