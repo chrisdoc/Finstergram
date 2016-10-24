@@ -29,7 +29,8 @@ function copyEnvVarsToGradleProperties {
         echo "Creating Gradle Properties file..."
         touch $GRADLE_PROPERTIES
 
-        echo "Writing TEST_API_KEY to gradle.properties..."
-        echo "INSTAGRAM_ACCESS_TOKEN=$INSTAGRAM_ACCESS_TOKEN\nGOOGLE_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY">> $GRADLE_PROPERTIES
+        echo "Writing KEYS to gradle.properties..."
+        echo "INSTAGRAM_ACCESS_TOKEN=$INSTAGRAM_ACCESS_TOKEN" >> $GRADLE_PROPERTIES
+        echo "GOOGLE_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY" >> $GRADLE_PROPERTIES
     fi
 }
