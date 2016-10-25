@@ -23,4 +23,4 @@ before_script:
   - source environmentSetup.sh && copyEnvVarsToGradleProperties
 script:
   # Unit Test
-  - ./gradlew test
+  - ./gradlew clean test
