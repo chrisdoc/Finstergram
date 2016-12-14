@@ -19,7 +19,7 @@ stages:
       - type: shell
         name: "Run tests"
         command: |
-          source environmentSetup.sh && copyEnvVarsToGradlePropertiesu
+          source environmentSetup.sh && copyEnvVarsToGradleProperties
           ./gradlew clean test
       - type: test-results-store
         path: /tmp/test-results
