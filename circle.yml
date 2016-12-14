@@ -6,12 +6,18 @@ stages:
   build:
     workDir: .
     steps:
+      - type: shell
+        name: "Install git"
+        command: |
+          apt-get update
+          apt-get -qq install git
       - type: checkout
       - type: shell
+        name: "Gradle version"
         command: |
-          set -eu
           ./gradlew --version
       - type: shell
+        name: "Run tests"
         command: |
           source environmentSetup.sh && copyEnvVarsToGradlePropertiesu
           ./gradlew clean test
