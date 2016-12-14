@@ -1,0 +1,19 @@
+version: 2
+executorType: docker
+containerInfo:
+  - image: beevelop/java:latest
+stages:
+  build:
+    workDir: .
+    steps:
+      - type: checkout
+      - type: shell
+        command: |
+          set -eu
+          ./gradlew --version
+      - type: shell
+        command: |
+          source environmentSetup.sh && copyEnvVarsToGradlePropertiesu
+          ./gradlew clean test
+      - type: test-results-store
+        path: /tmp/test-results
