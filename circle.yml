@@ -4,13 +4,13 @@ containerInfo:
   - image: beevelop/java:latest
 stages:
   build:
-    workDir: .
+    workDir: /tmp
     steps:
       - type: shell
         name: "Install git"
         command: |
-          apt-get update
-          apt-get -qq install git
+          apt-get update -qq && apt-get -qq install git
+          ls /home
       - type: checkout
       - type: shell
         name: "Gradle version"
