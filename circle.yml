@@ -1,7 +1,7 @@
 version: 2
 executorType: docker
 containerInfo:
-  - image: beevelop/java:latest
+  - image: chrisdoc/android_ci:latest
 stages:
   build:
     workDir: /tmp
