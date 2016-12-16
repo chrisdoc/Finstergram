@@ -1,22 +1,26 @@
 version: 2
 executorType: docker
 containerInfo:
-  - image: chrisdoc/android_ci:latest
+  - image: openjdk:8
 stages:
   build:
     workDir: /tmp/finstergram
     steps:
       - type: checkout
       - type: shell
+        name: "Install git"
+        command: |
+          apt-get update
+          apt-get install -y git wget curl
+      - type: shell
         name: "Gradle version"
         command: |
+          ./gradlew --version
           mkdir -p $ANDROID_HOME/licenses/
           echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
           cat $ANDROID_HOME/licenses/android-sdk-license
           echo "d975f751698a77b662f1254ddbeed3901e976f5a" > $ANDROID_HOME/licenses/intel-android-extra-license
           cat $ANDROID_HOME/licenses/intel-android-extra-license
-          sdkmanager --list
-          ./gradlew --version
       - type: shell
         name: "Run tests"
         command: |
