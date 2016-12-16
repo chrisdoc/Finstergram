@@ -4,13 +4,8 @@ containerInfo:
   - image: chrisdoc/android_ci:latest
 stages:
   build:
-    workDir: /tmp
+    workDir: /tmp/finstergram
     steps:
-      - type: shell
-        name: "Install git"
-        command: |
-          apt-get update -qq && apt-get -qq install git
-          ls /home
       - type: checkout
       - type: shell
         name: "Gradle version"
