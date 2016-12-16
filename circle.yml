@@ -1,7 +1,7 @@
 version: 2
 executorType: docker
 containerInfo:
-  - image: openjdk:8
+  - image: jacekmarchwicki/android
 stages:
   build:
     workDir: /tmp/finstergram
