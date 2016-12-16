@@ -10,6 +10,7 @@ stages:
       - type: shell
         name: "Gradle version"
         command: |
+          sdkmanager --list
           ./gradlew --version
       - type: shell
         name: "Run tests"
