@@ -18,6 +18,12 @@ android {
     buildConfigField 'double', 'Longitude', "13.425170"
     manifestPlaceholders = [ GOOGLE_MAPS_API_KEY:  GOOGLE_MAPS_API_KEY ]
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
   buildTypes {
     debug {
       testCoverageEnabled true
